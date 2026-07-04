@@ -4,10 +4,13 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 CMD ["/bin/bash"]
 WORKDIR /ptarmigan
 
-RUN apt update && \
+RUN apt update -y && \
     apt install -y build-essential &&\
-    apt install -y git && \
-    apt install -y rustc cargo && \
+    apt install -y git curl libhdf5-dev && \
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > sh.rustup.rs && \
+    sh sh.rustup.rs -y &&\
+    . $HOME/.cargo/env && \ 
     git clone https://github.com/tgblackburn/ptarmigan.git && \
-    cd ptarmigan 
+    cd ptarmigan && \
+    cargo build --release --features hdf5-output
     
