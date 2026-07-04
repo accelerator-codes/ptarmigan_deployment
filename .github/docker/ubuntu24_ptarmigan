@@ -1,0 +1,13 @@
+FROM ubuntu:noble
+
+RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
+CMD ["/bin/bash"]
+WORKDIR /ptarmigan
+
+RUN apt update && \
+    apt install -y build-essential &&\
+    apt install -y git && \
+    apt install -y rustc cargo && \
+    git clone https://github.com/tgblackburn/ptarmigan.git && \
+    cd ptarmigan 
+    
