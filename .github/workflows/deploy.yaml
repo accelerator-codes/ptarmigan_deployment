@@ -54,7 +54,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dockerimage: [ubtunu24-ptarmigan]
+        dockerimage: [ubuntu24-ptarmigan]
 
     permissions:
       contents: read
