@@ -13,4 +13,10 @@ RUN apt update -y && \
     git clone https://github.com/tgblackburn/ptarmigan.git && \
     cd ptarmigan && \
     cargo build --release --features hdf5-output
-    
+
+RUN apt install -y python3 pip python3.12-venv && \
+    python3 -m venv /python/venv-ptarmigan && \
+    /python/venv-ptarmigan/bin/pip install ipython numpy && \
+    /python/venv-ptarmigan/bin/pip install h5py jinja2
+
+ENV PATH="/python/venv-ptarmigan/bin/:$PATH"
