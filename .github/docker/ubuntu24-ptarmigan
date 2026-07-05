@@ -4,6 +4,12 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 CMD ["/bin/bash"]
 WORKDIR /ptarmigan
 
+RUN apt-get -y update
+RUN apt install -y python3 pip python3.12-venv
+RUN python3 -m venv /python/venv-ptarmigan
+RUN /python/venv-pyt-acc/bin/pip install ipython numpy
+RUN /python/venv-pyt-acc/bin/pip install h5py jinja2
+
 RUN apt update -y && \
     apt install -y build-essential &&\
     apt install -y git curl libhdf5-dev && \
